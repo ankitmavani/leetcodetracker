@@ -3,6 +3,7 @@ import AddQuestionModal from "../components/AddQuestionModal";
 import FiltersBar from "../components/FiltersBar";
 import DayCard from "../components/DayCard";
 import { databases, DB_ID, COLLECTION_ID } from "../appwrite";
+import { Query } from "appwrite";
 
 export default function LeetcodeTracker() {
   const [questions, setQuestions] = useState([]);
@@ -21,8 +22,25 @@ export default function LeetcodeTracker() {
   }, [dark]);
 
   const loadQuestions = async () => {
-    const res = await databases.listDocuments(DB_ID, COLLECTION_ID, {limit:100});
-    setQuestions(res.documents);
+    let allDocs = [];
+    let offset = 0;
+
+    while (true) {
+      const res = await databases.listDocuments(
+        DB_ID,
+        COLLECTION_ID,
+        [Query.limit(100), Query.offset(offset)]
+      );
+    
+      allDocs = [...allDocs, ...res.documents];
+    
+      if (res.documents.length < 100) break;
+    
+      offset += 100;
+    }
+
+    setQuestions(allDocs);
+
   };
 
   useEffect(() => loadQuestions(), []);
