@@ -11,7 +11,7 @@ export default function Home() {
       <div className="backdrop-blur-xl bg-white/20 dark:bg-gray-800/40 border border-white/30 dark:border-gray-700/40 shadow-2xl rounded-3xl p-10 max-w-md w-full text-center animate-fadeIn">
 
         <h1 className="text-4xl font-extrabold text-white drop-shadow-lg tracking-wide mb-6">
-          Welcome 👋
+          Welcome .... 👋
         </h1>
 
         <p className="text-white/90 mb-10 font-medium text-lg">
