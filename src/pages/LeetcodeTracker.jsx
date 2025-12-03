@@ -21,7 +21,7 @@ export default function LeetcodeTracker() {
   }, [dark]);
 
   const loadQuestions = async () => {
-    const res = await databases.listDocuments(DB_ID, COLLECTION_ID, {limit:500});
+    const res = await databases.listDocuments(DB_ID, COLLECTION_ID, {limit:100});
     setQuestions(res.documents);
   };
 
